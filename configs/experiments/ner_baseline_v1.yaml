@@ -1,0 +1,25 @@
+experiment:
+  name: ner_baseline_v1
+  seed: 42
+  data_config: configs/data/rurebus.yaml
+  model_config: configs/models/ner_baseline.yaml
+  output_dir: results/ner_baseline/ner_baseline_v1
+
+training:
+  epochs: 5
+  train_batch_size: 8
+  validation_batch_size: 8
+  gradient_accumulation_steps: 2
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  gradient_clip_norm: 1.0
+  mixed_precision: true
+  early_stopping_patience: 2
+  num_workers: 0
+  pin_memory: true
+
+evaluation:
+  primary_metric: strict_entity_micro_f1
+  save_best_only: true
+  report_per_class: true

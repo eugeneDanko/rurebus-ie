@@ -1,0 +1,27 @@
+dataset:
+  name: rurebus
+  format: brat
+  raw_dir: rurebus_data/RuREBus
+  processed_dir: rurebus_data/processed
+  manifest_path: rurebus_data/processed/manifest.csv
+
+splits:
+  train: train
+  validation: validation
+  test: test
+  validation_size: 0.20
+  seed: 42
+  group_by_source_document: true
+  deduplicate_by_text_sha256: true
+
+entities:
+  labels: [MET, ECO, BIN, CMP, QUA, ACT, INST, SOC]
+
+relations:
+  labels: [GOL, TSK, PNG, PNT, PPS, NNG, NNT, NPS, FNG, FNT, FPS]
+  negative_label: NO_RELATION
+
+preprocessing:
+  preserve_raw_text: true
+  tagging_scheme: BIO
+

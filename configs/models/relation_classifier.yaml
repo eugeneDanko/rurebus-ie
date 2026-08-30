@@ -1,0 +1,23 @@
+model:
+  architecture: marker_aware_rubert_multilabel_relation_classification
+  pretrained_name: ai-forever/ruBert-base
+  relation_hidden_size: 512
+  dropout: 0.1
+  positive_class_weight_cap: 10.0
+
+tokenization:
+  max_length: 256
+  entity_markers: ['[E1]', '[/E1]', '[E2]', '[/E2]']
+
+candidate_generation:
+  # Corpus audit: a 128-character gap retains 99.35% of annotated relations.
+  # Missing candidates remain false negatives in extraction metrics.
+  max_pair_distance: 128
+  context_margin: 128
+  train_negative_to_positive_ratio: 4.0
+  train_min_negative_pairs: 16
+
+targets:
+  mode: multilabel
+  negative_relation: all_zero_vector
+  labels: [GOL, TSK, PNG, PNT, PPS, NNG, NNT, NPS, FNG, FNT, FPS]

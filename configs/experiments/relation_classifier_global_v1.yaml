@@ -1,0 +1,32 @@
+experiment:
+  name: relation_classifier_global_v1_seed42
+  seed: 42
+  data_config: configs/data/rurebus_global_v1.yaml
+  model_config: configs/models/relation_classifier.yaml
+  output_dir: results/relation_classifier_global_v1/seed_42
+
+training:
+  epochs: 20
+  train_batch_size: 8
+  validation_batch_size: 16
+  test_batch_size: 16
+  gradient_accumulation_steps: 4
+  encoder_learning_rate: 0.00002
+  head_learning_rate: 0.0001
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  gradient_clip_norm: 1.0
+  mixed_precision: true
+  early_stopping_min_epochs: 15
+  early_stopping_patience: 3
+  num_workers: 0
+  pin_memory: true
+
+decoding:
+  confidence_threshold: 0.5
+
+evaluation:
+  primary_metric: strict_positive_relation_micro_f1
+  report_per_class: true
+  candidate_recall_is_reported: true
+  gold_version: corrected_v1_global_v1

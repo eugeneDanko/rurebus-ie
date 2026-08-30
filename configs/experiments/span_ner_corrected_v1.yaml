@@ -1,0 +1,35 @@
+experiment:
+  name: span_ner_corrected_v1_seed42
+  seed: 42
+  data_config: configs/data/rurebus_corrected_v1.yaml
+  model_config: configs/models/span_ner.yaml
+  output_dir: results/span_ner_corrected_v1/seed_42
+
+training:
+  # Train for at least 15 epochs; after that early stopping may finish the run
+  # before the hard maximum of 20 epochs.
+  epochs: 20
+  train_batch_size: 2
+  validation_batch_size: 1
+  test_batch_size: 1
+  gradient_accumulation_steps: 8
+  encoder_learning_rate: 0.00002
+  head_learning_rate: 0.0001
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  gradient_clip_norm: 1.0
+  mixed_precision: true
+  early_stopping_min_epochs: 15
+  early_stopping_patience: 3
+  num_workers: 0
+  pin_memory: true
+
+decoding:
+  confidence_threshold: 0.5
+  allow_overlapping: false
+
+evaluation:
+  primary_metric: strict_entity_micro_f1
+  save_best_only: true
+  report_per_class: true
+  gold_version: corrected_v1

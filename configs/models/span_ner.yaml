@@ -1,0 +1,19 @@
+model:
+  architecture: rubert_span_classification
+  pretrained_name: ai-forever/ruBert-base
+  span_hidden_size: 512
+  width_embedding_dim: 32
+  dropout: 0.1
+  none_loss_weight: 1.0
+
+tokenization:
+  max_length: 512
+  stride: 128
+
+spans:
+  # Width is measured in tokenizer words, not WordPiece subtokens.
+  max_span_width: 32
+  strict_alignment: false
+  negative_to_positive_ratio: 20
+  min_negative_spans: 128
+  max_negative_spans: 1024

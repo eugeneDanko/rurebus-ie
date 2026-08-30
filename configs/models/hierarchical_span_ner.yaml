@@ -1,0 +1,33 @@
+model:
+  architecture: hierarchical_rubert_span_classification
+  pretrained_name: ai-forever/ruBert-base
+  span_hidden_size: 512
+  width_embedding_dim: 32
+  dropout: 0.1
+  none_loss_weight: 1.0
+
+hierarchy:
+  # Original RuREBus names remain the public output labels.  These groups are
+  # used only by the stage-1 head and the auxiliary loss in stage 2.
+  superclass_groups:
+    - [ACT, BIN]
+    - [CMP, QUA]
+    - [ECO, SOC]
+    - [MET]
+    - [INST]
+  contrastive_projection_size: 128
+  contrastive_temperature: 0.1
+  contrastive_weight: 0.1
+  coarse_aux_weight: 0.3
+  contrastive_max_spans: 256
+
+tokenization:
+  max_length: 512
+  stride: 128
+
+spans:
+  max_span_width: 32
+  strict_alignment: false
+  negative_to_positive_ratio: 20
+  min_negative_spans: 128
+  max_negative_spans: 1024

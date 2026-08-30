@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+.venv/
+.env
+.env.*
+
+# Credentials
+kaggle.json
+**/kaggle.json
+
+# Downloaded/derived RuREBus data, including a nested source checkout.
+rurebus_data/
+
+# Generated experiment exports and model checkpoints.
+results/*
+!results/.gitkeep
+seed_*/
+global_threshold-*/
+.tmp/
+tmp/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.joblib
+eda_outputs/

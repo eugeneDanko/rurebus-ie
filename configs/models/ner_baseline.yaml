@@ -1,0 +1,13 @@
+model:
+  architecture: rubert_token_classification
+  pretrained_name: ai-forever/ruBert-base
+  num_labels: 17
+  dropout: 0.1
+
+tokenization:
+  max_length: 512
+  stride: 128
+  truncation: true
+  label_all_subtokens: true
+  ignore_label_id: -100
+

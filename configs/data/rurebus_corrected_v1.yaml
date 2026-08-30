@@ -1,0 +1,46 @@
+dataset:
+  name: rurebus
+  version: corrected_v1
+  parent_version: original_processed_v1
+  format: brat
+  role: internal_audited
+  parent_processed_dir: rurebus_data/processed
+  processed_dir: rurebus_data/versions/corrected_v1
+  manifest_path: rurebus_data/versions/corrected_v1/manifest.csv
+  dataset_report_path: rurebus_data/versions/corrected_v1/dataset_report.json
+  corrections_path: configs/data/corrections/rurebus_corrected_v1.csv
+  source_integrity_path: results/data_audit/rurebus_conflict_resolution_v1/file_integrity.csv
+
+splits:
+  train: train
+  validation: validation
+  test: test
+  inherited_from_parent: true
+  group_by_source_document: true
+  deduplicate_by_text_sha256: true
+
+entities:
+  labels: [MET, ECO, BIN, CMP, QUA, ACT, INST, SOC]
+
+relations:
+  labels: [GOL, TSK, PNG, PNT, PPS, NNG, NNT, NPS, FNG, FNT, FPS]
+  negative_label: NO_RELATION
+
+corrections:
+  allowed_statuses: [ACCEPTED]
+  rejected_statuses: [REJECTED, REVIEW_REQUIRED]
+  preserve_text: true
+  preserve_spans: true
+  preserve_relations: true
+
+evaluation_policy:
+  official_comparison_split: original_test
+  corrected_test_role: internal_audited
+  warning: >-
+    Test gold labels were corrected. Corrected-test metrics must not be compared
+    directly with official/original-test metrics.
+
+preprocessing:
+  preserve_raw_text: true
+  tagging_scheme: BIO
+
